@@ -17,15 +17,20 @@ func (e Expectation) WithResponse(response Response) Expectation {
 	return e
 }
 
+//func (e Expectation) WithArrayResponse(response *ArrayResponse) Expectation {
+//	e.Response = response
+//	return e
+//}
+
 func (e Expectation) WithPriority(priority int32) Expectation {
 	e.Priority = priority
 	return e
 }
 
 type Response struct {
-	Body       map[string]interface{} `json:"body,omitempty"`
-	Headers    map[string][]string    `json:"headers,omitempty"`
-	StatusCode int32                  `json:"statusCode,omitempty"`
+	Body       string              `json:"body,omitempty"`
+	Headers    map[string][]string `json:"headers,omitempty"`
+	StatusCode int32               `json:"statusCode,omitempty"`
 }
 
 func NewResponseOK() *Response {
@@ -34,7 +39,7 @@ func NewResponseOK() *Response {
 	return e
 }
 
-func (e Response) WithJSONBody(json map[string]interface{}) Response {
+func (e Response) WithJSONBody(json string) Response {
 	e.Body = json
 	return e
 }
